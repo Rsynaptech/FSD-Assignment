@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f4f5ef" />
+    <meta name="description" content="Send a campus request to the right people and keep track of what happens next." />
+    <title>Campus Help Desk | Northfield</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="Northfield Campus Help Desk home">
+        <span class="brand-mark" aria-hidden="true">N<span>+</span></span>
+        <span class="brand-name">northfield <span>/ help desk</span></span>
+      </a>
+      <div class="topbar-right">
+        <span class="service-status"><span class="live-dot"></span> CAMPUS SERVICES ONLINE</span>
+        <span class="term-label">FALL '26 <span class="term-square"></span></span>
+      </div>
+    </header>
+
+    <main id="top" class="page-shell">
+      <section class="intro" aria-labelledby="page-title">
+        <div class="intro-copy">
+          <p class="eyebrow"><span class="eyebrow-line"></span> YOUR CAMPUS, IN GOOD HANDS <span class="eyebrow-code">CHD / 04</span></p>
+          <h1 id="page-title">Something need<br />a <span>hand?</span></h1>
+          <p class="intro-note">Tell us what's going on. We'll get it to the right people.</p>
+        </div>
+        <div class="campus-stamp" aria-label="Northfield student services">
+          <span class="stamp-top">NORTHFIELD</span>
+          <span class="stamp-symbol" aria-hidden="true">✳</span>
+          <span class="stamp-bottom">STUDENT SERVICES · EST. 1968</span>
+        </div>
+        <div class="overview" aria-label="Request overview">
+          <div class="overview-item overview-open">
+            <span class="overview-value" id="open-count">0</span>
+            <span class="overview-label">OPEN</span>
+          </div>
+          <div class="overview-item">
+            <span class="overview-value" id="progress-count">0</span>
+            <span class="overview-label">IN MOTION</span>
+          </div>
+          <div class="overview-item overview-resolved">
+            <span class="overview-value" id="resolved-count">0</span>
+            <span class="overview-label">SORTED</span>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-rule"><span>YOUR SUPPORT DESK</span><span>01 — 02</span></div>
+
+      <div class="workspace-grid">
+        <section class="form-section" aria-labelledby="form-title">
+          <div class="section-heading">
+            <div>
+              <p class="section-index">01 / NEW REQUEST</p>
+              <h2 id="form-title">What's up?</h2>
+            </div>
+            <span class="heading-spark" aria-hidden="true">↘</span>
+          </div>
+          <p class="form-intro">A few details helps us send this to the right team.</p>
+
+          <form id="request-form">
+            <div class="field-pair">
+              <label class="field">
+                <span>YOUR NAME</span>
+                <input id="student-name" name="name" type="text" autocomplete="name" placeholder="e.g. Jordan Lee" required maxlength="80" />
+              </label>
+              <label class="field">
+                <span>STUDENT EMAIL</span>
+                <input id="student-email" name="email" type="email" autocomplete="email" placeholder="you@northfield.edu" required maxlength="120" />
+              </label>
+            </div>
+
+            <label class="field">
+              <span>WHAT'S IT ABOUT?</span>
+              <select id="category" name="category" required>
+                <option value="" disabled selected>Choose a team</option>
+                <option>Facilities &amp; repairs</option>
+                <option>IT &amp; Wi-Fi</option>
+                <option>Housing</option>
+                <option>Library</option>
+                <option>Campus safety</option>
+                <option>Accessibility</option>
+                <option>Something else</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span>GIVE US THE DETAILS</span>
+              <textarea id="description" name="description" rows="4" placeholder="Where is it? What happened? The more we know, the quicker we can help." required maxlength="1000"></textarea>
+              <span class="field-foot"><span>JUST THE USEFUL BITS</span><span id="char-count">0 / 1000</span></span>
+            </label>
+
+            <fieldset class="priority-field">
+              <legend>HOW URGENT IS IT?</legend>
+              <div class="priority-options">
+                <label class="priority-option"><input type="radio" name="priority" value="Low" /><span class="priority-dot dot-low"></span><span>Low</span></label>
+                <label class="priority-option"><input type="radio" name="priority" value="Medium" checked /><span class="priority-dot dot-medium"></span><span>Medium</span></label>
+                <label class="priority-option"><input type="radio" name="priority" value="High" /><span class="priority-dot dot-high"></span><span>High</span></label>
+                <label class="priority-option"><input type="radio" name="priority" value="Urgent" /><span class="priority-dot dot-urgent"></span><span>Urgent</span></label>
+              </div>
+            </fieldset>
+
+            <div class="form-actions">
+              <button class="submit-button" type="submit"><span id="submit-label">Send to the team</span><span class="button-arrow" aria-hidden="true">↗</span></button>
+              <button id="cancel-edit" class="cancel-button" type="button" hidden>Cancel edit</button>
+            </div>
+            <p id="form-message" class="form-message" role="status" aria-live="polite"></p>
+          </form>
+          <p class="privacy-note"><span aria-hidden="true">+</span> Your contact details are only shared with the team handling your request.</p>
+        </section>
+
+        <section class="requests-section" aria-labelledby="requests-title">
+          <div class="section-heading requests-heading">
+            <div>
+              <p class="section-index">02 / THE QUEUE</p>
+              <h2 id="requests-title">On our radar<span class="title-period">.</span></h2>
+            </div>
+            <span id="request-total" class="total-tag">00 REQUESTS</span>
+          </div>
+
+          <div class="queue-tools">
+            <div class="filter-tabs" role="tablist" aria-label="Filter requests by status">
+              <button class="filter-tab is-active" type="button" role="tab" aria-selected="true" data-filter="All">All <span id="all-tab-count">0</span></button>
+              <button class="filter-tab" type="button" role="tab" aria-selected="false" data-filter="Open">Open</button>
+              <button class="filter-tab" type="button" role="tab" aria-selected="false" data-filter="In progress">In motion</button>
+              <button class="filter-tab" type="button" role="tab" aria-selected="false" data-filter="Resolved">Sorted</button>
+            </div>
+            <label class="search-box"><span aria-hidden="true">⌕</span><input id="search-requests" type="search" placeholder="Find a request" aria-label="Find a request" /></label>
+          </div>
+
+          <div class="queue-labels" aria-hidden="true"><span>REQUEST / CATEGORY</span><span>PRIORITY</span><span>STATUS</span></div>
+          <div id="request-list" class="request-list" aria-live="polite" aria-busy="true"></div>
+          <div id="empty-state" class="empty-state" hidden>
+            <span class="empty-mark" aria-hidden="true">+</span>
+            <p class="empty-title">Nothing on the board.</p>
+            <p class="empty-copy">Your requests will show up here once they're sent.</p>
+          </div>
+          <p class="queue-foot"><span class="live-dot"></span> LIVE QUEUE <span class="queue-foot-right">UPDATED JUST NOW</span></p>
+        </section>
+      </div>
+
+      <footer class="page-footer"><span>NORTHFIELD UNIVERSITY · STUDENT SERVICES</span><span>HERE WHEN YOU NEED US <b>✳</b></span></footer>
+    </main>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
